@@ -1,8 +1,8 @@
 from django.db import models
 
 class Cidade(models.Model):
-    nome = models.CharField(max_length=100, verbose_name="Nome da pessoa")
-    uf = models.CharField(max_length=100, verbose_name="Nome do pai")
+    nome = models.CharField(max_length=100, verbose_name="Nome da cidade")
+    uf = models.CharField(max_length=100, verbose_name="Nome do Estado")
 
     def __str__(self):
         return f"{self.nome}"
@@ -26,8 +26,8 @@ class Instituicao(models.Model):
     def __str__(self):
         return f"{self.nome}, {self.telefone}, {self.cidade}"
     class Meta:
-        verbose_name = "Ocupacao"
-        verbose_name_plural = "Ocupacao"
+        verbose_name = "Instituicao"
+        verbose_name_plural = "Instituicoes"
         
 class Areasaber(models.Model):
     nome = models.CharField(max_length=100, verbose_name="Nome da area do saber")
@@ -67,8 +67,8 @@ class Disciplina(models.Model):
     def __str__(self):
         return f"{self.nome}"
     class Meta:
-        verbose_name = "Periodo"
-        verbose_name_plural = "Periodos"
+        verbose_name = "Disciplina"
+        verbose_name_plural = "Disciplinas"
         
 
 class Pessoa(models.Model):
@@ -121,8 +121,8 @@ class Frequencia(models.Model):
     def __str__(self):
         return f"{self.numero_faltas} {self.pessoa}"
     class Meta:
-        verbose_name = "Falta"
-        verbose_name_plural = "Faltas"
+        verbose_name = "Frequencia"
+        verbose_name_plural = "Frequencias"
         
 class Turma(models.Model):
     nome = models.CharField(max_length = 100, verbose_name = "Nome da turma")
@@ -138,7 +138,7 @@ class Ocorrencia(models.Model):
     descricao = models.CharField(max_length = 100, verbose_name = "Descrição da ocorrencia")
     data = models.DateTimeField(verbose_name = "Data da ocorrencia")
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE, verbose_name="Nome do curso")
-    disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE, verbose_name="Nome do curso")
+    disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE, verbose_name="Nome da disciplina")
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, verbose_name="Nome da pessoa")
 
 class Disciplina_curso(models.Model):
@@ -150,8 +150,8 @@ class Disciplina_curso(models.Model):
     def __str__(self):
         return f"{self.nome}"
     class Meta:
-        verbose_name = "Periodo"
-        verbose_name_plural = "Periodos"
+        verbose_name = "Disciplina_curso"
+        verbose_name_plural = "Disciplinas_curso"
         
 class Avaliacao_tipo(models.Model):
     nome = models.CharField(max_length=100, verbose_name="Tipo da avalicao")
@@ -159,5 +159,5 @@ class Avaliacao_tipo(models.Model):
     def __str__(self):
         return f"{self.nome}"
     class Meta:
-        verbose_name = "Avaliacao"
-        verbose_name_plural = "Avaliacoes"
+        verbose_name = "Avaliacao_tipo"
+        verbose_name_plural = "Avaliacoes_tipo"
